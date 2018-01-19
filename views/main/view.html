@@ -1,0 +1,78 @@
+{%extends 'layout.html'%}
+
+{%block content%}
+
+<div class="listBox" style="font-family:PingFang SC;font-weight: Light;">
+	<h1>{{content.title}}</h1>
+	<p class="colDefault">
+		作者：<span class="colInfo">{{content.user.username}}</span> -
+		时间：<span class="colInfo">{{content.addTime|date('Y-m-d H:i:s',-8*60)}}</span> - 
+		阅读：<span class="colInfo">{{content.views}}</span> - 
+		评论：<span class="colInfo">10</span>
+	</p>
+	<p class="test">
+		{{content.content}}
+	</p>
+</div>
+
+<div class="listBox message">
+		<h3 class="textLeft"> <strong>评论</strong> <span class="em">一共有 <em id='messageCount'>0</em>条评论</span></h3>
+		
+		{% if userInfo._id %}
+		 <p class="textLeft">zmouse</p>
+		 <p class="textLeft">
+			<textarea id="messageContent" ></textarea>
+			<input type="hidden" id='contentId' value="{{content.id}}">
+			<button id="messageBtn" class="submit">提交</button>
+		</p> 
+		{% else %}
+
+		<p class="bgDanger " style="line-height:30px;" >您还没有登录，请先登录！</p>
+
+		{% endif %}
+
+		<div class="messageList" style="display: block;">
+		</div>
+		
+		<!-- <div class="messageList">
+			<div class="messageBox"><p>还没有留言</p></div>
+		</div> -->
+		
+		
+		<!-- <div class="messageList" style="display: block;">
+			<div class="messageBox">
+				<p class="name "><span class="fl">admin</span><span class="fr">2016年09月28日 19:23:34</span></span></p><p>123344555</p>
+			</div>
+			<div class="messageBox">
+				<p class="name"><span class="fl">admin</span><span class="fr">2016年09月28日 19:23:34</span></span></p><p>123344555</p>
+			</div>
+		</div> -->
+
+	</div>
+<script src="/public/js/comment.js"></script>
+<!-- 页码 -->
+<!-- <div class="pager">
+	<ur class="clear">
+		<li class="previous">
+			{% if page<=1 %}
+				<span>没有上一页了</span>
+			{%else%}
+				<a href="/?category={{category}}&page={{page-1}}">上一页</a>
+			{%endif%}
+
+		</li>
+		{%if pages>0 %}
+		<li>
+			<strong>{{page}} / {{pages}}</strong>
+		</li>
+		{%endif%}
+		<li class="text">
+				{% if page>=pages %}
+				<span>没有下一页了</span>
+			{%else%}
+				<a href="/?category={{category}}&page={{page+1}}">下一页</a>
+			{%endif%}
+		</li>
+	</ur>
+</div> -->
+{%endblock%}
